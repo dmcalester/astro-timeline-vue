@@ -34,9 +34,9 @@ const timeRegionEnd = computed(() => regionEndTime.toISOString())
 
     <div class="content">
 
-      <div style="width: 950px; margin: auto">
+      <div style="width: calc(100dvw - 2rem); margin: 1rem;">
             <rux-timeline 
-              has-played-indicator="false" 
+              has-played-indicator="true" 
               timezone="UTC" 
               :start="timelineStart" 
               :end="timelineEnd" 
@@ -53,7 +53,6 @@ const timeRegionEnd = computed(() => regionEndTime.toISOString())
                       :start="timeRegionStart" 
                       :end="timeRegionEnd" 
                       status="serious">
-                        Scheduled Event (1 hour from now)
                     </rux-time-region>
                 </rux-track>
                
@@ -75,6 +74,7 @@ const timeRegionEnd = computed(() => regionEndTime.toISOString())
   padding: 0;
   margin: 0;
   min-height: 100vh;
+  width: 100dvw;
   background: var(--color-background-base-default, #101923);
 }
 
