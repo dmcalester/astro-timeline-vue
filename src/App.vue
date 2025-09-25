@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 // Timeline variables for 24-hour span starting at midnight UTC today
 const now = new Date()
@@ -10,7 +10,25 @@ const currentTimeUTC = new Date()
 // Timeline properties
 const timelineStart = computed(() => todayMidnightUTC.toISOString())
 const timelineEnd = computed(() => tomorrowMidnightUTC.toISOString())
-const timelinePlayhead = computed(() => new Date().toISOString())
+// const timelinePlayhead = computed(() => new Date().toISOString())
+
+const timelinePlayhead = ref(new Date().toISOString())
+
+// let playheadInterval: number;
+const playheadInterval = ref<number | undefined>(undefined);
+
+onMounted(() => {
+  // Start an interval when the component is mounted
+  playheadInterval.value = setInterval(() => {
+    timelinePlayhead.value = new Date().toISOString();
+  }, 60000); // 60000 milliseconds = 1 minute
+});
+
+onUnmounted(() => {
+  //  Clear the interval on unmounted
+  clearInterval(playheadInterval);
+});
+
 
 // Time region properties (1 hour from now, spanning 1 hour)
 const regionStartTime = new Date(currentTimeUTC.getTime() + 60 * 60 * 1000) // 1 hour from now
@@ -100,7 +118,7 @@ const event8EndTime = computed(() => event8End.toISOString())
               interval="hour" 
               :zoom="zoomLevel" 
               ruler-position="top" 
-              show-secondary-ruler="true" 
+              show-secondary-ruler="false" 
               show-grid="true" 
               hide-j-day="false">
                 <rux-track slot="ruler">
