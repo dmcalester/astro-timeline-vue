@@ -100,7 +100,7 @@ const event8EndTime = computed(() => event8End.toISOString())
               interval="hour" 
               :zoom="zoomLevel" 
               ruler-position="top" 
-              show-secondary-ruler="false" 
+              show-secondary-ruler="true" 
               show-grid="true" 
               hide-j-day="false">
                 <rux-track slot="ruler">
