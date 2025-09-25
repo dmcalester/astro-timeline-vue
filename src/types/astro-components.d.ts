@@ -8,6 +8,7 @@ declare namespace JSX {
     'rux-status': any;
     'rux-card': any;
     'rux-progress': any;
+    'rux-slider': any;
     'rux-ruler': any;
     'rux-timeline': any;
     'rux-timeline-track': any;
@@ -25,6 +26,7 @@ declare module '@vue/runtime-core' {
     'rux-status': any;
     'rux-card': any;
     'rux-progress': any;
+    'rux-slider': any;
     'rux-ruler': any;
     'rux-timeline': any;
     'rux-timeline-track': any;
